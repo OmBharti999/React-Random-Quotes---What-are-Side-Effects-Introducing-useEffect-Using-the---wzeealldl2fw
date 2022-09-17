@@ -1,4 +1,5 @@
-import React,{ useState } from "react";
+import React from "react";
+import { useState,useEffect } from "react";
 import "../styles/App.css";
 
 var colors = [
@@ -19,6 +20,16 @@ var colors = [
 const App = () => {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
+  
+  useEffect(()=>{
+  fetch("https://api.quotable.io/random")
+      .then((res) => res.json())
+      .then((data) => {
+        setText(data.content);
+        setAuthor(data.author);})}
+  ,[])
+
+
   const fetchQ = () => {
     fetch("https://api.quotable.io/random")
       .then((res) => res.json())
