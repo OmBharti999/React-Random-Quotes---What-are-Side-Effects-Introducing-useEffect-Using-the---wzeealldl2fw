@@ -42,19 +42,17 @@ const App = () => {
   };
 
   return (
-    <div id="main">
-      <div id="wrapper">
+    
         <div id="quote-box">
           <div className="quote-text">{text}</div>
           <div className="quote-author">{author}</div>
           <div className="buttons">
             <button className="button" id="new-quote" onClick={fetchQ}>
               Click
-            </button>
+           </button>
           </div>
         </div>
-      </div>
-    </div>
+    
   );
 };
 
