@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../styles/App.css";
 
 var colors = [
@@ -20,26 +20,20 @@ var colors = [
 const App = () => {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
-  
-  useEffect(()=>{
-  fetch("https://api.quotable.io/random")
-      .then((res) => res.json())
-      .then((data) => {
-        setText(data.content);
-        setAuthor(data.author);})}
-  ,[])
 
+  useEffect(() => {
+    fetchQ();
+  }, []);
 
-  const fetchQ = () => {
-    fetch("https://api.quotable.io/random")
-      .then((res) => res.json())
-      .then((data) => {
-        setText(data.content);
-        setAuthor(data.author);
-        document.getElementsByTagName("body")[0].style.backgroundColor =
-          colors[parseInt(Math.random() * 10)];
-      });
-  };
+  async function fetchQ() {
+    const res = await fetch("https://api.quotable.io/random");
+    const data = await res.json();
+
+    setText(data.content);
+    setAuthor(data.author);
+    document.getElementsByTagName("body")[0].style.backgroundColor =
+      colors[parseInt(Math.random() * 10)];
+  }
 
   return (
     <div id="main">
